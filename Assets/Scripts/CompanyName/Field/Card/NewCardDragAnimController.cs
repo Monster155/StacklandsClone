@@ -2,8 +2,10 @@
 
 namespace CompanyName.Field.Card
 {
-    public class CardDragAnimationController : MonoBehaviour
+    public class NewCardDragAnimController : MonoBehaviour
     {
+        [SerializeField] private Collider _collider;
+        [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private CardDrag _drag;
 
         private bool _isDragging;
@@ -24,7 +26,7 @@ namespace CompanyName.Field.Card
             _drag.OnHoverBegin -= Drag_OnHoverBegin;
             _drag.OnHoverEnd -= Drag_OnHoverEnd;
         }
-        
+
         private void SetIsDragging(bool isDragging)
         {
             _isDragging = isDragging;
@@ -41,18 +43,27 @@ namespace CompanyName.Field.Card
         {
             if (_isDragging)
             {
+                _collider.isTrigger = true;
+                _rigidbody.useGravity = false;
+
                 var pos = transform.position;
                 pos.y = 0.2f;
                 transform.position = pos;
             }
             else if (_isHovered)
             {
+                _collider.isTrigger = false;
+                _rigidbody.useGravity = false;
+                
                 var pos = transform.position;
                 pos.y = 0.1f;
                 transform.position = pos;
             }
             else
             {
+                _collider.isTrigger = false;
+                _rigidbody.useGravity = true;
+                
                 var pos = transform.position;
                 pos.y = 0f;
                 transform.position = pos;
