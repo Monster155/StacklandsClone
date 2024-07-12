@@ -7,40 +7,18 @@ namespace CompanyName.Field.Card
     {
         public event Action OnDragBegin;
         public event Action OnDragEnd;
-        
+        public event Action OnHoverBegin;
+        public event Action OnHoverEnd;
+
+
         private Vector3 _screenPoint;
         private Vector3 _offset;
-        
+
         private Camera _cam;
-        
-        private bool _isDragging;
-        private bool _isHovered;
 
         private void Start()
         {
             _cam = Camera.main;
-        }
-
-        private void Update()
-        {
-            if (_isDragging)
-            {
-                var pos = transform.position;
-                pos.y = 0.2f;
-                transform.position = pos;
-            }
-            else if (_isHovered)
-            {
-                var pos = transform.position;
-                pos.y = 0.1f;
-                transform.position = pos;
-            }
-            else
-            {
-                var pos = transform.position;
-                pos.y = 0f;
-                transform.position = pos;
-            }
         }
 
         void OnMouseDown()
@@ -49,7 +27,6 @@ namespace CompanyName.Field.Card
 
             _offset = transform.position - _cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z));
 
-            _isDragging = true;
             OnDragBegin?.Invoke();
         }
 
@@ -64,12 +41,9 @@ namespace CompanyName.Field.Card
             transform.position = curPosition;
         }
 
-        private void OnMouseUp()
-        {
-            _isDragging = false;
-            OnDragEnd?.Invoke();
-        }
-        private void OnMouseEnter() => _isHovered = true;
-        private void OnMouseExit() => _isHovered = false;
+        private void OnMouseUp() => OnDragEnd?.Invoke();
+        
+        private void OnMouseEnter() => OnHoverBegin?.Invoke();
+        private void OnMouseExit() => OnHoverEnd?.Invoke();
     }
 }

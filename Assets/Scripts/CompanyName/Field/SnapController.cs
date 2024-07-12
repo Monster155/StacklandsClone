@@ -7,27 +7,44 @@ namespace CompanyName.Field
     {
         [SerializeField] private CardView[] _cards;
 
-        private const float DistanceToSnap = 0.1f;
+        private const float DistanceToSnap = 1f;
 
         private void Start()
         {
             foreach (CardView card in _cards)
             {
-                card.Init(OnDragBeginCallback, OnDragEndCallback);
+                card.OnDragBegin += Card_OnDragBegin;
+                card.OnDragEnd += Card_OnDragEnd;
             }
         }
 
-        private void OnDragBeginCallback(CardView card)
+        private void Card_OnDragBegin(CardView card)
         {
+            foreach (CardView c in _cards)
+            {
+                if (c.Equals(card) || c.HasChild)
+                    continue;
+
+                c.ChangeOverlapMarkerVisibility(true);
+            }
         }
 
-        private void OnDragEndCallback(CardView card)
+        private void Card_OnDragEnd(CardView card)
         {
+            foreach (CardView c in _cards)
+            {
+                if (c.Equals(card) || c.HasChild)
+                    continue;
+
+                c.ChangeOverlapMarkerVisibility(false);
+            }
+
             CardView cardToSnap = FindClosestCard(card);
 
             if (cardToSnap != null)
             {
-                cardToSnap.Attach(card);
+                cardToSnap.AddChildCard(card);
+                card.AddParentCard(cardToSnap);
             }
         }
 
@@ -38,7 +55,7 @@ namespace CompanyName.Field
 
             foreach (CardView c in _cards)
             {
-                if (c.Equals(_cards))
+                if (c.Equals(card) || c.HasChild)
                     continue;
 
                 float distance = (c.Pos - card.Pos).magnitude;
