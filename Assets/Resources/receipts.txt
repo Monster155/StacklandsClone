@@ -1,0 +1,5 @@
+Resource 1	Resource 2	Resource 3	Resource 4	Resource 5	Resource 6	Resource 7	Craft time	Drop chance	Result
+Stone	Stone	Wood					60	100%	House
+Stone	Stone	Stone	Villager				30	100%	Brick
+Wood	Wood	Wood	Stone	Villager			30	100%	Lumber Camp
+Flint	Flint	Wood	Stone	Villager			30	100%	Iron Mine
