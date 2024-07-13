@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1685523174131961779}
   - component: {fileID: 496184701975234171}
   m_Layer: 0
-  m_Name: NewCard
+  m_Name: LumberCampCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   _drag: {fileID: 1685523174131961779}
   _progressBar: {fileID: 7614591609681056887}
   <ChildCardContainer>k__BackingField: {fileID: 4063390773981321836}
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 6
 --- !u!114 &1685523174131961779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a63c624fe0d66834091890e1e86302fa, type: 2}
+  - {fileID: 2100000, guid: b525f310ce906df4783c9e24866c4bb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

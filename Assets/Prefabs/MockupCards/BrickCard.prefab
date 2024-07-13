@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1685523174131961779}
   - component: {fileID: 496184701975234171}
   m_Layer: 0
-  m_Name: NewCard
+  m_Name: BrickCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   _drag: {fileID: 1685523174131961779}
   _progressBar: {fileID: 7614591609681056887}
   <ChildCardContainer>k__BackingField: {fileID: 4063390773981321836}
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 5
 --- !u!114 &1685523174131961779
 MonoBehaviour:
   m_ObjectHideFlags: 0
