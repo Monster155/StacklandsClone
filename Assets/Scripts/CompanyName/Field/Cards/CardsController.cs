@@ -42,6 +42,18 @@ namespace CompanyName.Field.Cards
         {
             if (card.PreviousCard != null)
             {
+                NewCardView headCard = card;
+                while (headCard.PreviousCard != null)
+                    headCard = headCard.PreviousCard;
+                if (_cardsToTimerDictionary.ContainsKey(headCard))
+                {
+                    StopCoroutine(_cardsToTimerDictionary[headCard]);
+                    headCard.UpdateTimer(0f);
+                    _cardsToTimerDictionary.Remove(headCard);
+                }
+
+                //
+
                 card.PreviousCard.NextCard = null;
                 card.PreviousCard = null;
 
@@ -128,10 +140,12 @@ namespace CompanyName.Field.Cards
                     f => card.UpdateTimer(f),
                     () =>
                     {
+                        _cardsToTimerDictionary.Remove(card);
+
                         card.UpdateTimer(0f);
 
                         // TODO make it normal - create cards factory and change head card to new (result) card
-                        
+
                         // destroy all cards
                         _headCards.Remove(card);
                         NewCardView nextCard = card;
