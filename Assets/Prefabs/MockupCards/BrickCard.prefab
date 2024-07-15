@@ -51,8 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drag: {fileID: 1685523174131961779}
   _progressBar: {fileID: 7614591609681056887}
+  _renderer: {fileID: 6396957106361948739}
   <ChildCardContainer>k__BackingField: {fileID: 4063390773981321836}
-  <Type>k__BackingField: 5
 --- !u!114 &1685523174131961779
 MonoBehaviour:
   m_ObjectHideFlags: 0

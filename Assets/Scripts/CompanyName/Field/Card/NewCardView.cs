@@ -1,4 +1,5 @@
 ﻿using System;
+using CompanyName.Factories;
 using CompanyName.ReceiptData;
 using UnityEngine;
 
@@ -11,17 +12,21 @@ namespace CompanyName.Field.Card
 
         [SerializeField] private CardDrag _drag;
         [SerializeField] private Transform _progressBar;
+        [SerializeField] private MeshRenderer _renderer;
         [field: SerializeField] public Transform ChildCardContainer { get; private set; }
-        [field: SerializeField] public ResourceType Type { get; private set; }
         // [field: SerializeField] public CardPhysicsController PhysicsController { get; private set; }
 
         public NewCardView PreviousCard { get; set; }
         public NewCardView NextCard { get; set; }
+        public ResourceType Type { get; private set; }
 
-        public void Init()
+        public void Init(CardFactory cardFactory, ResourceType type)
         {
             PreviousCard = null;
             NextCard = null;
+
+            Type = type;
+            _renderer.material = cardFactory.GetMaterial(type);
         }
 
         private void Start()
